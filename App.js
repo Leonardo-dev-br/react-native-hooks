@@ -1,10 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+
+  useEffect(() => {
+    console.log("FUCKKKKKKKKKK");
+  }, []);
+
+  
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Count atualizou");
+  }, [count]);
+
+  const handleIncremento = () => {
+    setCount(count + 1);
+  }
+
+  const handleDecremento = () => {
+    if (count === 0) return;
+    setCount(count - count);
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Contador: {count}</Text>
+      <Button title='Incrementar' onPress={handleIncremento} />
+      <Button title='Decrementar TOTAL' onPress={handleDecremento} />
       <StatusBar style="auto" />
     </View>
   );
